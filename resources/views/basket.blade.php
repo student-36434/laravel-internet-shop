@@ -26,9 +26,9 @@
                                 {{ $product->name }}
                             </a>
                         </td>
-                        <td><span class="badge">1</span>
+                        <td><span class="badge">{{ $product->pivot->count }}</span>
                             <div class="btn-group form-inline">
-                                <form action="http://internet-shop.tmweb.ru/basket/remove/1" method="POST">
+                                <form action="{{ route('basket-remove', $product) }}" method="POST">
                                     <button type="submit" class="btn btn-danger" href=""><span
                                             class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
                                     @csrf
@@ -42,12 +42,12 @@
                             </div>
                         </td>
                         <td>{{ $product->price }} PLN</td>
-                        <td>{{ $product->price }} PLN</td>
+                        <td>{{ $product->getPriceForCount() }} PLN</td>
                     </tr>
                 @endforeach
                 <tr>
                     <td colspan="3">Total cost:</td>
-                    <td>71990 PLN</td>
+                    <td>{{ $order->getFullPrice() }} PLN</td>
                 </tr>
                 </tbody>
             </table>
