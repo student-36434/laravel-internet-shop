@@ -24,4 +24,25 @@ class Order extends Model
 
         return $sum;
     }
+
+    /**
+     * @param string $name
+     * @param string $phone
+     * @return bool
+     */
+    public function saveOrder(string $name, string $phone): bool
+    {
+        if ($this->status != 0) {
+            return false;
+        }
+
+        $this->name = $name;
+        $this->phone = $phone;
+        $this->status = 1;
+        $this->save();
+
+        session()->forget('orderId');
+
+        return true;
+    }
 }

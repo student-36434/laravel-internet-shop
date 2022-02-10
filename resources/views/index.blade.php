@@ -1,15 +1,13 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Main')
 
 @section('content')
-    <div class="starter-template">
-        <h1>All products</h1>
+    <h1>All products</h1>
 
-        <div class="row">
-            @foreach($products as $product)
-                @include('card', compact('product'))
-            @endforeach
-        </div>
+    <div class="row">
+        @foreach($products as $product)
+            @include('layouts.card', compact('product'))
+        @endforeach
     </div>
 @endsection

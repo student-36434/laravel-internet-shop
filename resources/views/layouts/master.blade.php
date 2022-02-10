@@ -25,17 +25,17 @@
                 <li><a href="{{ route('categories') }}">Categories</a>
                 </li>
                 <li><a href="{{ route('basket') }}">Basket</a></li>
-{{--                <li><a href="http://internet-shop.tmweb.ru/locale/en">en</a></li>--}}
+                {{--                <li><a href="http://internet-shop.tmweb.ru/locale/en">en</a></li>--}}
 
-{{--                <li class="dropdown">--}}
-{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"--}}
-{{--                       aria-expanded="false">₽<span class="caret"></span></a>--}}
-{{--                    <ul class="dropdown-menu">--}}
-{{--                        <li><a href="http://internet-shop.tmweb.ru/currency/RUB">₽</a></li>--}}
-{{--                        <li><a href="http://internet-shop.tmweb.ru/currency/USD">$</a></li>--}}
-{{--                        <li><a href="http://internet-shop.tmweb.ru/currency/EUR">€</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
+                {{--                <li class="dropdown">--}}
+                {{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"--}}
+                {{--                       aria-expanded="false">₽<span class="caret"></span></a>--}}
+                {{--                    <ul class="dropdown-menu">--}}
+                {{--                        <li><a href="http://internet-shop.tmweb.ru/currency/RUB">₽</a></li>--}}
+                {{--                        <li><a href="http://internet-shop.tmweb.ru/currency/USD">$</a></li>--}}
+                {{--                        <li><a href="http://internet-shop.tmweb.ru/currency/EUR">€</a></li>--}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -47,7 +47,17 @@
 </nav>
 
 <div class="container">
-    @yield('content')
+    <div class="starter-template">
+        @if(session()->has('success'))
+            <p class="alert alert-success"> {{ session()->get('success') }}</p>
+        @endif
+
+        @if(session()->has('warning'))
+                <p class="alert alert-warning"> {{ session()->get('warning') }}</p>
+        @endif
+
+        @yield('content')
+    </div>
 </div>
 </body>
 </html>

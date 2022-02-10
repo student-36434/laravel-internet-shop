@@ -1,18 +1,19 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'To order')
 
 @section('content')
+    <h1>Order confirmation</h1>
     <div class="container">
         <div class="row justify-content-center">
-            <p>Общая стоимость: <b>0 ₽.</b></p>
-            <form action="http://internet-shop.tmweb.ru/basket/place" method="POST">
+            <p>Total price: <b>{{ $order->getFullPrice() }} PLN.</b></p>
+            <form action="{{ route('basket-confirm') }}" method="POST">
                 <div>
-                    <p>Укажите свои имя и номер телефона, чтобы наш менеджер мог с вами связаться:</p>
+                    <p>Enter your name and phone number so that our manager can contact you:</p>
 
                     <div class="container">
                         <div class="form-group">
-                            <label for="name" class="control-label col-lg-offset-3 col-lg-2">Имя: </label>
+                            <label for="name" class="control-label col-lg-offset-3 col-lg-2">Name: </label>
                             <div class="col-lg-4">
                                 <input type="text" name="name" id="name" value="" class="form-control">
                             </div>
@@ -20,7 +21,7 @@
                         <br>
                         <br>
                         <div class="form-group">
-                            <label for="phone" class="control-label col-lg-offset-3 col-lg-2">Номер телефона: </label>
+                            <label for="phone" class="control-label col-lg-offset-3 col-lg-2">Phone number: </label>
                             <div class="col-lg-4">
                                 <input type="text" name="phone" id="phone" value="" class="form-control">
                             </div>
@@ -35,9 +36,10 @@
                         </div>
                     </div>
                     <br>
-                    <input type="hidden" name="_token" value="3MePjdakCdTAwRyv5Va62eTxVXjGAByHQT0F7eRf">                    <input type="submit" class="btn btn-success" value="Подтвердите заказ">
+                    @csrf
+                    <input type="submit" class="btn btn-success" value="Confirm order">
                 </div>
             </form>
         </div>
-    </div
+    </div>
 @endsection
