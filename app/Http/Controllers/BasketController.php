@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -66,11 +67,16 @@ class BasketController extends Controller
             $order->products()->attach($productId);
         }
 
+        if (Auth::check()) {
+            $order->user_id = Auth::id();
+            $order->save();
+        }
+
         $product = Product::find($productId);
 
         session()->flash('success', 'Added item ' . $product->name);
 
-        return redirect('basket');
+        return redirect()->route('basket');
     }
 
     public function basketRemove(int $productId)
