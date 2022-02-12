@@ -1,28 +1,27 @@
 @extends('auth.layouts.master')
 
-@isset($category)
-    @section('title', 'Edit Category ' . $category->name)
+@isset($product)
+    @section('title', 'Edit product ' . $product->name)
 @else
-    @section('title', 'Add Category')
+    @section('title', 'Add product')
 @endisset
 
 @section('content')
     <div class="col-md-12">
-        @isset($category)
-            <h1>Edit Category <b>{{ $category->name }}</b></h1>
+        @isset($product)
+            <h1>'Edit product <b>{{ $product->name }}</b></h1>
         @else
-            <h1>Add Category</h1>
+            <h1>Add product</h1>
         @endisset
-
         <form method="POST" enctype="multipart/form-data"
-              @isset($category)
-              action="{{ route('categories.update', $category) }}"
+              @isset($product)
+              action="{{ route('products.update', $product) }}"
               @else
-              action="{{ route('categories.store') }}"
+              action="{{ route('products.store') }}"
             @endisset
         >
             <div>
-                @isset($category)
+                @isset($product)
                     @method('PUT')
                 @endisset
                 @csrf
@@ -30,7 +29,7 @@
                     <label for="code" class="col-sm-2 col-form-label">Code: </label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" name="code" id="code"
-                               value="@isset($category){{ $category->code }}@endisset">
+                               value="@isset($product){{ $product->code }}@endisset">
                     </div>
                 </div>
                 <br>
@@ -38,15 +37,26 @@
                     <label for="name" class="col-sm-2 col-form-label">Name: </label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" name="name" id="name"
-                               value="@isset($category){{ $category->name }}@endisset">
+                               value="@isset($product){{ $product->name }}@endisset">
+                    </div>
+                </div>
+                <br>
+                <div class="input-group row">
+                    <label for="category_id" class="col-sm-2 col-form-label">Category: </label>
+                    <div class="col-sm-6">
+                        <select name="category_id" id="category_id" class="form-control">
+                            <option value="1">Smartphones</option>
+                            <option value="2">Portable technology</option>
+                            <option value="3">Appliances</option>
+                        </select>
                     </div>
                 </div>
                 <br>
                 <div class="input-group row">
                     <label for="description" class="col-sm-2 col-form-label">Description: </label>
                     <div class="col-sm-6">
-							<textarea name="description" id="description" cols="72"
-                                      rows="7">@isset($category){{ $category->description }}@endisset</textarea>
+								<textarea name="description" id="description" cols="72"
+                                          rows="7">@isset($product){{ $product->description }}@endisset</textarea>
                     </div>
                 </div>
                 <br>
@@ -56,6 +66,14 @@
                         <label class="btn btn-default btn-file">
                             Upload <input type="file" style="display: none;" name="image" id="image">
                         </label>
+                    </div>
+                </div>
+                <br>
+                <div class="input-group row">
+                    <label for="price" class="col-sm-2 col-form-label">Price: </label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="price" id="price"
+                               value="@isset($product){{ $product->price }}@endisset">
                     </div>
                 </div>
                 <button class="btn btn-success">Save</button>

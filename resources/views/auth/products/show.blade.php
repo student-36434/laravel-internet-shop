@@ -1,10 +1,10 @@
 @extends('auth.layouts.master')
 
-@section('title', 'Category ' . $category->name)
+@section('title', 'Product ' . $product->name)
 
 @section('content')
     <div class="col-md-12">
-        <h1>Category Home Appliances</h1>
+        <h1>{{ $product->name }}</h1>
         <table class="table">
             <tbody>
             <tr>
@@ -12,33 +12,32 @@
                     Field
                 </th>
                 <th>
-                    Meaning
+                    Value
                 </th>
             </tr>
             <tr>
                 <td>ID</td>
-                <td>{{ $category->id }}</td>
+                <td>{{ $product->id}}</td>
             </tr>
             <tr>
                 <td>Code</td>
-                <td>{{ $category->code }}</td>
+                <td>{{ $product->code }}</td>
             </tr>
             <tr>
                 <td>Name</td>
-                <td>{{ $category->name }}</td>
+                <td>{{ $product->name }}</td>
             </tr>
             <tr>
                 <td>Description</td>
-                <td>{{ $category->description }}</td>
+                <td>{{ $product->description }}</td>
             </tr>
             <tr>
                 <td>Image</td>
-                <td><img src="https://sfa.ifluger.ru/wp-content/uploads/2016/08/Kategoriya.png"
-                         height="240px"></td>
+                <td><img src="https://pulsar.ee/wp-content/uploads/2018/10/example.jpg" height="240px"></td>
             </tr>
             <tr>
-                <td>Count products</td>
-                <td>{{ $category->products->count() }}</td>
+                <td>Category</td>
+                <td>{{ $product->category->name }}</td>
             </tr>
             </tbody>
         </table>
