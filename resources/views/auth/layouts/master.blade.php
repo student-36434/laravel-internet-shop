@@ -28,6 +28,11 @@
             </a>
 
             <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ route('categories.index') }}">Categories</a></li>
+                    <li><a href="{{ route('home') }}">Product</a></li>
+                    <li><a href="{{ route('home') }}">Orders</a></li>
+                </ul>
                 @guest
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">

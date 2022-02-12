@@ -22,10 +22,15 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'admin'
+], function () {
     Route::group(['middleware' => 'is_admin'], function () {
         Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('home');
     });
+
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
 });
 
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('get-logout');
